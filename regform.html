@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>Form Registration</h1>
-    <form action="" onsubmit="return validationFrom()">
+    <form action="" onsubmit="return validationForm()">
         <!-- TO VALIDATE NAME -->
         <label for="name">Name:</label>
         <input type="name" id="name" name="name">
@@ -80,7 +80,7 @@
                 return "Name must contain only letters.";
             }            
         }
-        function validationFrom(){
+        function validationForm(){
             
             let name=document.getElementById("name").value;
             let phone=document.getElementById("phone").value;
@@ -106,3 +106,4 @@
     </script>
 </body>
 </html>
+
