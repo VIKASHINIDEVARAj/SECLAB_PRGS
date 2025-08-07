@@ -1,0 +1,35 @@
+<script>
+        function Validation(name){
+            const regex = /^[a-zA-Z]+$/;
+            if(name.trim()===""){
+                return "Name is required.";
+            }
+            if(!regex.test(name)){
+                return "Name must contain only letters.";
+            }
+        }
+        function PhoneNumberValidation(phoneNumber){
+            const regex = /^[0-9]{10}$/;
+            if(phoneNumber.trim()===""){
+                return "Phone number is required.";
+            }
+            if(!regex.test(phoneNumber)){
+                return "Phone number must be 10 digits.";
+            }
+        }
+        function EmailValidation(email){
+            const regex = /^[^a-zA-Z0-9./+_-]+@[^a-zA-Z]+\.[^a-zA-Z@]+$/;
+            if(email.trim()===""){
+                return "Email is required.";
+            }
+            if(!regex.test(email)){
+                return "Invalid email format.";
+            }
+        }
+        function PasswordValidation(password){
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d){6,}$/;
+            if(password.trim()===""){
+                return "Password is required.";
+            }
+        }
+    </script>
