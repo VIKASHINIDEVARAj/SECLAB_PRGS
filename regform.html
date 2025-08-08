@@ -3,107 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Day_7</title>
     <style>
-       body{
-            text-align:center;
-            background-color: rgb(185, 90, 90);
-          }
-        
+        body {
+            text-align: center;
+            background-color: brown;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>Form Registration</h1>
-    <form action="" onsubmit="return validationForm()">
-        <!-- TO VALIDATE NAME -->
+    <h2>Form  Validation</h2>
+    <form action="" onsubmit="return ValidateForm()">
         <label for="name">Name:</label>
-        <input type="name" id="name" name="name">
-        <div id="nameError" class="error"></div><br>
-        <!-- TO VALIDATE PHONENUMBER -->
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone">
-        <div id="phoneError" class="error"></div><br>
-        <!-- TO VALIDATE MAIL -->
+        <input type="text" id="name" name="name"><br>
+        <div id="name_required" class="error">
+           
+
+        </div><br><br>
+        <label for="PhoneNumber">PhoneNumber:</label>
+        <input type="tel" id="PhoneNumber" name="PhoneNumber"><br>
+        <div id="PhoneNumber_required" class="error">
+            
+        </div><br><br>
+
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <div id="emailError" class="error"></div><br>
-        <!-- TO VALIDATE PASSWORD -->
+        <input type="email" id="email" name="email"><br>
+        <div id="Email_required" class="error">
+                
+        </div><br><br>
+
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <div id="passwordError" class="error"></div><br>
-        <button type="Submit">SUBMIT</button>
+        <input type="password" id="password" name="password"><br>  
+        <div id="Password_required" class="error">
+            
+        </div><br><br>
+
+        <button type="submit">Submit</button>
     </form>
     <script>
-        function validationNum(phone)
-        {
-            const regex=/^[0-9]{10}$/
-            if(phone.trim()==="")
-            {
-                return "text area can't be empty"
-            }
-            if(!regex.test(phone)){
-                return "must be 10 digits"
-            }
-            return "phone num is valid"            
-        }
-         function validationMail(email)
-        {
-            const regex=/^[a-zA-z0-9._%+_]+@[a-zA-z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if(email.trim()==="")
-            {
-                return "email can't be empty"
-            }
-            if(!regex.test(email)){
-                return "invalid email"
-            }
-            return "email is valid"            
-        }
-         function validationPass(password)
-        {
-            const regex=/^(?=.*[A-Z])(?=.*\d).{8,}$/;
-            if(password.trim()==="")
-            {
-                return "password can't be empty"
-            }
-            if(!regex.test(password)){
-                return "invalid password. password must be atleast 8 characters"
-            }
-            return "password is valid"            
-        }
-         function validationNam(name)
-        {
-             const regex = /^[a-zA-Z]+$/;
+        function Validation(name){
+            const regex = /^[a-zA-Z]+$/;
             if(name.trim()===""){
                 return "Name is required.";
             }
             if(!regex.test(name)){
                 return "Name must contain only letters.";
-            }            
-        }
-        function validationForm(){
-            
-            let name=document.getElementById("name").value;
-            let phone=document.getElementById("phone").value;
-            let email=document.getElementById("email").value;
-            let password=document.getElementById("password").value;
-
-            let nameError=validationNam(name);
-            let phoneError=validationNum(phone);
-            let emailError=validationMail(email);
-            let passwordError=validationPass(password);
-           
-            if(phoneError=== "phone is valid" && nameError ==="name is valid" && passwordError === "password is valid" && emailError === "email is valid"
-            
-            ){
-                return true;//allow submission
             }
-            document.getElementById("nameError").innerText= nameError==="is valid" ? " " :nameError;
-            document.getElementById("phoneError").innerText= phoneError==="is valid" ? " " :phoneError;
-            document.getElementById("emailError").innerText= emailError==="is valid" ? " " :emailError;
-            document.getElementById("passwordError").innerText= passwordError==="is valid" ? " " :passwordError;
-        
+            return "Name is valid.";
+        }
+        function PhoneNumberValidation(PhoneNumber){
+            const regex = /^[0-9]{10}$/;
+            if(PhoneNumber.trim()===""){
+                return "Phone number is required.";
+            }
+            if(!regex.test(PhoneNumber)){
+                return "Phone number must be 10 digits.";
+            }
+            return "Phone number is valid.";
+        }
+        function EmailValidation(email){
+            const regex = /^[^a-zA-Z0-9./+_-]+@[^a-zA-Z]+\.[^a-zA-Z@]+$/;
+            if(email.trim()===""){
+                return "Email is required.";
+            }
+            if(!regex.test(email)){
+                return "Invalid email format.";
+            }
+            return "Email is valid.";
+        }
+        function PasswordValidation(password){
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d){6,}$/;
+            if(password.trim()===""){
+                return "Password is required.";
+            }
+            return "Password is valid.";
+        }
+        function ValidateForm(){
+            let name = document.getElementById("name").value;
+            let phoneNumber = document.getElementById("PhoneNumber").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let nameError = Validation(name);
+            let phoneError = PhoneNumberValidation(phoneNumber); 
+            let emailError = EmailValidation(email);
+            let passwordError = PasswordValidation(password);
+
+            if(phoneError === "Phone number is valid." && emailError === "Email is valid." && passwordError === "Password is valid." && nameError === "Name is valid.") {
+                return true;
+            }
+            document.getElementById("name_required").innerText= nameError==="is valid" ? " " :nameError;
+            document.getElementById("PhoneNumber_required").innerText= phoneError==="is valid" ? " " :phoneError;
+            document.getElementById("Email_required").innerText= emailError==="is valid" ? " " :emailError;
+            document.getElementById("Password_required").innerText= passwordError==="is valid" ? " " :passwordError;
+            return false;
         }
     </script>
 </body>
 </html>
-
