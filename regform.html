@@ -7,7 +7,6 @@
     <style>
         body {
             text-align: center;
-            background-color: brown;
         }
         .error {
             color: red;
@@ -66,7 +65,7 @@
             return "Phone number is valid.";
         }
         function EmailValidation(email){
-            const regex = /^[^a-zA-Z0-9./+_-]+@[^a-zA-Z]+\.[^a-zA-Z@]+$/;
+            const regex = /^[a-zA-Z0-9./+_-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
             if(email.trim()===""){
                 return "Email is required.";
             }
@@ -105,3 +104,4 @@
     </script>
 </body>
 </html>
+ 
