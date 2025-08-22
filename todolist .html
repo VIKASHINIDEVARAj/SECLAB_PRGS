@@ -9,13 +9,13 @@
             text-align: center;
             background-color:  rgb(150, 10, 52);
         }
-        h2{
+          h2{
             color: white;
         }
         input,button{
             padding: 10px;
             border-radius: 10px;
-        }
+        } 
         ul{
             list-style-type: none;
         }
@@ -27,20 +27,36 @@
     <button onclick="addTask()">ADD TASK</button>
     <ul id="listContent"></ul>
     <script>
-        function addTask(){
-            let textValue=document.getElementById("inputValue").value.trim();
-            if(textValue==="")
-                return;
-                let li=document.createElement("li");
-                li.textContent=textValue;
-                document.getElementById("listContent").appendChild(li);
-                const removeButton=document.createElement("button");
-                removeButton.textContent="REMOVE";
-                removeButton.addEventListener("click",function(e){
-                    li.remove();
-                });
-                li.appendChild(removeButton);
-            };
+        function addTask() {
+    let textValue = document.getElementById("inputValue").value.trim();
+    if (textValue === "") return;
+
+    let li = document.createElement("li");
+
+    let taskSpan = document.createElement("span");
+    taskSpan.textContent = textValue;
+    
+    const completeButton = document.createElement("button");
+    completeButton.textContent = "COMPLETE";
+    completeButton.addEventListener("click", function () {
+        taskSpan.classList.toggle("completed");
+    });
+
+    
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "REMOVE";
+    removeButton.addEventListener("click", function () {
+        li.remove();
+    });
+
+    li.appendChild(taskSpan);
+    li.appendChild(completeButton);
+    li.appendChild(removeButton);
+
+    document.getElementById("listContent").appendChild(li);
+    document.getElementById("inputValue").value = "";
+}
+ 
         
     </script>
     
