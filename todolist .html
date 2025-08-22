@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            background-color:  rgb(150, 10, 52);
+        }
+        h2{
+            color: white;
+        }
+        input,button{
+            padding: 10px;
+            border-radius: 10px;
+        }
+        ul{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>TO DO LIST</h2>
+    <input type="text" id="inputValue" placeholder="enter a todo item"><br><br>
+    <button onclick="addTask()">ADD TASK</button>
+    <ul id="listContent"></ul>
+    <script>
+        function addTask(){
+            let textValue=document.getElementById("inputValue").value.trim();
+            if(textValue==="")
+                return;
+                let li=document.createElement("li");
+                li.textContent=textValue;
+                document.getElementById("listContent").appendChild(li);
+                const removeButton=document.createElement("button");
+                removeButton.textContent="REMOVE";
+                removeButton.addEventListener("click",function(e){
+                    li.remove();
+                });
+                li.appendChild(removeButton);
+            };
+        
+    </script>
+    
+     
+</body>
+</html>
