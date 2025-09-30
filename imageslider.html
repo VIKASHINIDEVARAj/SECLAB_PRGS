@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="slider">
+        <img src="./img.jpg" class="slider-image" alt="img" id="numberBox">
+        <button id="next">Next</button>
+        <button id="prev">Previous</button>
+    </div>
+    <script>
+        let numbers=["img.jpg","img2.jpg","img3.jpg"];
+        console.log(numbers.length);
+        let currentIndex=0
+
+        let numberBox=document.getElementById("numberBox");
+        let preBtn=document.getElementById("prev");
+        let nextBtn=document.getElementById("next");
+
+        nextBtn.addEventListener("click",()=>{
+            currentIndex=(currentIndex + 1) % numbers.length;
+            //0=0+1=1%5=1
+            numberBox.src=numbers[currentIndex];
+        })
+
+        preBtn.addEventListener("click" , ()=>{
+            currentIndex=(currentIndex -1 + numbers.length) % numbers.length;
+            //5=9%5=4
+            
+            numberBox.src=numbers[currentIndex];
+        })
+        //automatic sliding
+        setInterval(()=>{
+            currentIndex=(currentIndex+1)%numbers.length;
+            numberBox.src=numbers[currentIndex]
+        },2000);
+    </script>
+</body>
+</html>
